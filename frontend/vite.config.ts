@@ -1,8 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
+  // GitHub Pages: keatonh.github.io/todo → base 경로 필요
+  base: command === "build" ? "/todo/" : "/",
   server: {
     proxy: {
       "/api": {
@@ -11,4 +13,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

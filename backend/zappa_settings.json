@@ -1,0 +1,16 @@
+{
+    "production": {
+        "app_function": "app.app",
+        "aws_region": "ap-northeast-2",
+        "profile_name": "default",
+        "project_name": "todo-api",
+        "runtime": "python3.10",
+        "s3_bucket": "zappa-todo-api-keaton",
+        "environment_variables": {
+            "DATABASE_URL": "sqlite:////tmp/todos.db"
+        },
+        "keep_warm": false,
+        "memory_size": 512,
+        "timeout_seconds": 30
+    }
+}

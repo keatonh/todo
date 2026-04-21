@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from models import db, Todo
@@ -6,7 +7,10 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///todos.db"
+# Lambda /tmp 또는 로컬 instance/ 를 DATABASE_URL 환경변수로 전환 가능
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
+    "DATABASE_URL", "sqlite:///todos.db"
+)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)

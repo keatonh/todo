@@ -1,6 +1,8 @@
 import { Todo, Priority, Filters } from "./types";
 
-const BASE = "/api";
+// 프로덕션: VITE_API_URL=https://xxxx.execute-api.ap-northeast-2.amazonaws.com/production/api
+// 개발:     Vite proxy가 /api → localhost:8000 으로 전달
+const BASE = import.meta.env.VITE_API_URL ?? "/api";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, init);
